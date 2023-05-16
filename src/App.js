@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 
 import CurrencyChart from './components/CurrencyChart';
+import Info from './components/Info';
 
 import convertDataToXml from './utils/convertDataToXml';
 
 import './App.css';
+import Header from './components/Header';
 
 
 function App() {
 
-  // const [rates, setRates] = useState();
+  const [rates, setRates] = useState();
   // const [publishingDate, setPublishingDate] = useState();
 
   useEffect(() => {
@@ -22,14 +24,18 @@ function App() {
           const jsonData = convertDataToXml(data);
 
           const rates = jsonData.DataSet.Body.Cube.Rate;
-          // setRates(rates);
+          setRates(rates);
 
           const publishingDate = jsonData.DataSet.Header.PublishingDate._text;
           // setPublishingDate(publishingDate);
 
           rates.forEach(rate => {
-            // console.log(rate._attributes.currency + " " + rate._text);
-            localStorage.setItem(publishingDate + "_" + rate._attributes.currency, rate._text);
+            if(rate._attributes.multiplier){ // if multiplier exists from API
+              localStorage.setItem(publishingDate + "_" + rate._attributes.currency, rate._text * 100);
+
+            }else{
+              localStorage.setItem(publishingDate + "_" + rate._attributes.currency, rate._text);
+            }
           });
   
         })
@@ -40,14 +46,12 @@ function App() {
     saveDataToLocalStorage();
   }, [])
 
-  localStorage.setItem('2023-05-17_EUR', '7.9365')
-  localStorage.setItem('2023-05-18_EUR', '4.9365')
-
-
   return (
     <div className="App">
-      {/* <CurrencyChart rates={rates} publishingDate={publishingDate} /> */}
-      <CurrencyChart />
+      <Header />
+      <CurrencyChart rates={rates} />
+      {/* <CurrencyChart /> */}
+      <Info />
     </div>
   );
 }
