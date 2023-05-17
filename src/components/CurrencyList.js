@@ -6,7 +6,7 @@ import Loader from '../components/Loader';
 import styles from '../assets/CurrencyList.module.css'
 
 const CurrencyList = ({ rates, onCurrencyChange }) => {
-
+  // send back function to parent with selected currency
   const handleCurrencyChange = (currency) => {
     onCurrencyChange(currency);
   }

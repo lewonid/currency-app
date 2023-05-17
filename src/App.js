@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
+import Header from './components/Header';
 import CurrencyChart from './components/CurrencyChart';
 import Info from './components/Info';
+import DataFromFirebase from './components/DataFromFirebase';
+import Footer from './components/Footer';
 
 import convertDataToXml from './utils/convertDataToXml';
+import handleAddDataFirebase from './utils/handleAddDataFirebase';
 
 import './App.css';
-import Header from './components/Header';
-
 
 function App() {
 
@@ -16,11 +18,11 @@ function App() {
 
   useEffect(() => {
     const saveDataToLocalStorage = () => {
-      // Fetch API data
+      // fetch API data
       fetch('https://www.bnr.ro/nbrfxrates.xml')
         .then((response) => response.text())
         .then((data) => {
-          // Convert data to XML format
+          // convert XML to JSON format
           const jsonData = convertDataToXml(data);
 
           const rates = jsonData.DataSet.Body.Cube.Rate;
@@ -30,14 +32,22 @@ function App() {
           // setPublishingDate(publishingDate);
 
           rates.forEach(rate => {
-            if(rate._attributes.multiplier){ // if multiplier exists from API
+            if (rate._attributes.multiplier) { // if multiplier exists from API
+              // date               currency                    value
+              // saving in the localStorage
               localStorage.setItem(publishingDate + "_" + rate._attributes.currency, rate._text * 100);
-
-            }else{
+              // saving in firestore
+              handleAddDataFirebase(rate._attributes.currency, publishingDate, rate._text * 100);
+              // set firebase db here
+            } else {
+              // saving in the localStorage
               localStorage.setItem(publishingDate + "_" + rate._attributes.currency, rate._text);
+              // saving in firestore
+              handleAddDataFirebase(rate._attributes.currency, publishingDate, rate._text);
+              // set firebase db here 
             }
+            // console.log(publishingDate + "_" + rate._attributes.currency, rate._text)
           });
-  
         })
         .catch((error) => {
           console.error('Error fetching API data:', error);
@@ -50,8 +60,11 @@ function App() {
     <div className="App">
       <Header />
       <CurrencyChart rates={rates} />
-      {/* <CurrencyChart /> */}
-      <Info />
+      <div className='InfoContainer'>
+        <Info />
+        <DataFromFirebase />
+      </div>
+      <Footer />
     </div>
   );
 }

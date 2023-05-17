@@ -1,6 +1,6 @@
 # Currency Chart App
 
-This is a React application that generates a currency chart using Chart.js. The app retrieves currency data and displays it as a line chart.
+This is a React application that generates a currency chart using Chart.js. The app retrieves currency data and displays it as a line chart and it also sends data about currencies to firestore database.
 
 ## Installation
 
@@ -15,3 +15,5 @@ The app utilizes the following dependencies:
 - React: JavaScript library for building user interfaces.
 - react-chartjs-2: React wrapper for Chart.js.
 - chart.js: JavaScript charting library.
+- firebase: Firebase is a mobile and web application development platform that provides a backend infrastructure and various services for building and deploying applications.
+- bnr-api: BNR API is the API provided by the National Bank of Romania, which offers currency exchange rates and other financial data.

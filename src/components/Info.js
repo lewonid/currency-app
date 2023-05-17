@@ -1,9 +1,11 @@
-import React from 'react'
-import { Button } from '@mui/material'
+import React, { useState } from 'react'
+import { Button, Alert } from '@mui/material'
 
 import styles from '../assets/Info.module.css'
 
 const Info = () => {
+
+  const [addedItems, setAddedItems] = useState();
 
   const addEur = () => {
     localStorage.setItem('2023-05-19_EUR', '4.5465')
@@ -12,6 +14,7 @@ const Info = () => {
     localStorage.setItem('2023-05-22_EUR', '4.2365')
     localStorage.setItem('2023-05-23_EUR', '4.5465')
     localStorage.setItem('2023-05-24_EUR', '4.5365')
+    setAddedItems('EUR');
   }
   const addUsd = () => {
     localStorage.setItem('2023-05-19_USD', '4.1465')
@@ -20,6 +23,7 @@ const Info = () => {
     localStorage.setItem('2023-05-22_USD', '4.2365')
     localStorage.setItem('2023-05-23_USD', '4.9365')
     localStorage.setItem('2023-05-24_USD', '4.2365')
+    setAddedItems('USD');
   }
   const addHuf = () => {
     localStorage.setItem('2023-05-19_HUF', '128')
@@ -28,6 +32,7 @@ const Info = () => {
     localStorage.setItem('2023-05-22_HUF', '130')
     localStorage.setItem('2023-05-23_HUF', '128')
     localStorage.setItem('2023-05-24_HUF', '140')
+    setAddedItems('HUF');
   }
 
   return (
@@ -46,6 +51,11 @@ const Info = () => {
       <Button id={styles.infoButton} onClick={() => addHuf()} variant='contained' >
         HUF
       </Button>
+      {
+        addedItems ? <Alert id={styles.infoAlert} severity="success">4 random values of {addedItems} were added to localStorage succesfully!</Alert>
+          : null
+      }
+      <p>* press a button then refresh the page</p>
     </div>
   )
 }

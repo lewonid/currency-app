@@ -32,6 +32,7 @@ const CurrencyChart = ({ rates }) => {
   const [currency, setCurrencyRegExp] = useState(/_EUR$/);
   const [currencyString, setCurrencyString] = useState('EUR');
 
+  // options for Chart
   const options = {
     responsive: true,
     plugins: {
@@ -45,12 +46,13 @@ const CurrencyChart = ({ rates }) => {
     },
   };
 
-  // get the currency selected in the currency list
+  // get the currency selected in the currency list from CurrencyList component with a callback function
   const handleCurrencyChange = (currency) => {
     setCurrencyRegExp(new RegExp("_" + currency + "$"));
     setCurrencyString(currency);
   };
 
+  // get currency data from localStorage by key and value
   const currencyData = Object.keys(localStorage).filter(function (key) {
     return currency.test(key);
   }).map(function (key) {
@@ -60,11 +62,12 @@ const CurrencyChart = ({ rates }) => {
 
   // sort the data array using the comparator function
   const sortedCurrencyData = currencyData.sort(comparator);
-  console.log(sortedCurrencyData)
 
+  // defining two empty objects
   const labels = [];
   const values = [];
 
+  // push data into labels and values, the two objects are going to be used as parameter in Chart component
   Object.values(sortedCurrencyData).forEach((currency) => {
     const [date] = currency[0].split('_');
     const [value] = currency[1].split('_');
@@ -72,6 +75,7 @@ const CurrencyChart = ({ rates }) => {
     values.push(parseFloat(value));
   });
 
+  // defining the chart data
   const chartData = {
     labels: labels,
     datasets: [
@@ -85,6 +89,7 @@ const CurrencyChart = ({ rates }) => {
     ],
   };
 
+  // render chart if data is loaded
   if (chartData) {
     return (
       <div className={styles.CurrencyChart}>

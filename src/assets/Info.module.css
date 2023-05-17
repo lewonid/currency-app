@@ -2,7 +2,8 @@
     /* background-color: rgba(4, 159, 187, 0.363); */
     padding: 2rem;
     border-radius: 10px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border: 1px solid rgba(25, 118, 210, 0.5);
     max-width: 1000px;
     margin-top: 4rem;
     margin-bottom: 4rem;
@@ -12,6 +13,10 @@
     margin-bottom: 0.6rem;
 }
 
+.Info p:last-of-type {
+    font-size: 0.8rem;
+}
+
 .Info h2 {
     margin-bottom: 1rem;
 }
@@ -19,4 +24,8 @@
 #infoButton {
     margin: 1rem;
     padding: 0.5rem 2rem;
+}
+
+#infoAlert {
+    margin-bottom: 0.5rem;
 }

@@ -1,0 +1,29 @@
+.DataFromFirebase {
+    max-width: 1000px;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid #2e7d32;
+    margin-bottom: 4rem;
+}
+
+.DataFromFirebase p {
+    margin-bottom: 0.6rem;
+}
+
+.DataFromFirebase h2 {
+    margin-bottom: 1rem;
+}
+
+#fetchButton {
+    margin: 1rem;
+}
+
+.ContainerCurrencyBlock {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ContainerByDate {
+    display: flex;
+    flex-wrap: wrap;
+}
