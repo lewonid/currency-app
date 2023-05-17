@@ -1,0 +1,22 @@
+.Info {
+    /* background-color: rgba(4, 159, 187, 0.363); */
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid black;
+    max-width: 1000px;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.Info p {
+    margin-bottom: 0.6rem;
+}
+
+.Info h2 {
+    margin-bottom: 1rem;
+}
+
+#infoButton {
+    margin: 1rem;
+    padding: 0.5rem 2rem;
+}

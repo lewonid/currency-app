@@ -1,0 +1,27 @@
+.CurrencyList {
+    margin-top: 3rem;
+}
+
+h3 {
+    font-size: 14px;
+    margin-bottom: 1rem;
+}
+
+.CurrenciesContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Currency {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min-content;
+}
+
+.rateValue {
+    color: gray;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: -10px;
+    font-size: 12px;
+}
