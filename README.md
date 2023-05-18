@@ -1,3 +1,6 @@
+# LINK TO DEPLOYED VERSION:
+https://currency-app-chart.netlify.app/
+
 # Currency Chart App
 
 This is a React application that generates a currency chart using Chart.js. The app retrieves currency data and displays it as a line chart and it also sends data about currencies to firestore database.
