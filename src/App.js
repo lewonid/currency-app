@@ -19,7 +19,11 @@ function App() {
   useEffect(() => {
     const saveDataToLocalStorage = () => {
       // fetch API data
-      fetch('https://www.bnr.ro/nbrfxrates.xml')
+
+      const proxyUrl = 'https://api.allorigins.win/raw?url='; // using this method due to CORS problem
+      const apiUrl = 'https://www.bnr.ro/nbrfxrates.xml';
+
+      fetch(proxyUrl + apiUrl)
         .then((response) => response.text())
         .then((data) => {
           // convert XML to JSON format
